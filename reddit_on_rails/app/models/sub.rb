@@ -3,7 +3,7 @@ class Sub < ApplicationRecord
 
   has_many :posts
 
-  belongs_to :mods,
+  belongs_to :mod,
   foreign_key: :mod_id,
   class_name: :User
 end

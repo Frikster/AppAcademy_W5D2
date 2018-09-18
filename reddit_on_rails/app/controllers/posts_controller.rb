@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     @post.author_id = current_user.id
     @post.sub_id = params[:sub_id]
     if @post.save
-      redirect_to post_url(@post)
+      redirect_to sub_post_url(id: @post.id, sub_id: params[:sub_id])
     else
       flash.now[:errors] = @post.errors.full_messages
       render :new
@@ -24,13 +24,13 @@ class PostsController < ApplicationController
     @post = current_user.posts.where(id: params[:id])
     @post.update(post_params)
     flash[:errors] = @post.errors.full_messages
-    redirect_to post_url(@post)
+    redirect_to sub_post_url(@post)
   end
 
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to post_url(@post)
+    redirect_to sub_url(@post.sub_id)
   end
 
   def show
