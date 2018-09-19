@@ -21,4 +21,16 @@
 
   <input type="submit" name="" value="Submit">
 
+<ul>
+  <% Sub.all.each do |sub1| %>
+
+    <li>
+      <%= sub1.title %>
+      <input type="checkbox" name="post[sub_ids][]" value="<%= sub1.id %>">
+    </li>
+
+    <%=  %>
+  <% end %>
+</ul>
+
 </form>

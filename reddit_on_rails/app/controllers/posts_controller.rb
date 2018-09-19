@@ -8,6 +8,15 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.author_id = current_user.id
     @post.sub_id = params[:sub_id]
+
+    # post_params[:sub_ids].each do |sub_id|
+    #   subreddit = Sub.find(sub_id)
+    #
+    # end
+    #
+    # @post.subreddits =
+
+
     if @post.save
       redirect_to sub_post_url(id: @post.id, sub_id: params[:sub_id])
     else
@@ -39,6 +48,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :url, :content)
+    params.require(:post).permit(:title, :url, :content, sub_ids: [])
   end
 end
